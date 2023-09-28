@@ -7,7 +7,6 @@ class User(models.Model):
     password = models.CharField(default="", max_length=200)
     email = models.EmailField(default="", unique=True)
     field = models.CharField(default="", max_length=200)
-    degree = models.CharField(default="", max_length=200)
     score = models.IntegerField(default=0)
 
     def __str__(self):

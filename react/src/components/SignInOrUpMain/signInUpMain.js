@@ -5,14 +5,13 @@ import '../../css/media-querys.css';
 import navbarIcon from "../../images/navbar-icon.png";
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
-import CheckUser from "../../js/checkUser";
 import checkUser from "../../js/checkUser";
 
 function SignInUpMain() {
     let [activeTab, setActiveTab] = useState("signIn");
     let [loginError, setLoginError] = useState(false);
     let [signUpForm, setSignUpForm] = useState({
-        inputs: ['userName', 'email', 'password', 'repeatPassword', 'field', 'degree'],
+        inputs: ['userName', 'email', 'password', 'repeatPassword'],
         formClicked: false,
         userName: {
             value: "",
@@ -25,12 +24,6 @@ function SignInUpMain() {
             value: "",
             valid: false,
         }, repeatPassword: {
-            value: "",
-            valid: false,
-        }, field: {
-            value: "",
-            valid: false,
-        }, degree: {
             value: "",
             valid: false,
         }
@@ -47,10 +40,21 @@ function SignInUpMain() {
             valid: false,
         }
     });
-    let [userExistError, setUserExistError] = useState(true);
+    let [userExistError, setUserExistError] = useState(false);
+    let [userEmailError, setUserEmailError] = useState(false);
     let navigate = useNavigate();
+    const [formError, setFormError] = useState('');
+    const [field, setField] = useState('');
+    const location = useLocation();
+    let [loading, setLoading] = useState(false);
+
+    function handleSelect(e) {
+        setField(e.target.value);
+        setFormError(e.target.value === "Field");
+    }
 
     function signUpSubmit() {
+        setLoading(true);
         let formValid = true;
         setSignUpForm({...signUpForm, formClicked: true})
         for (let i = 0; i < signUpForm.inputs.length; i++) {
@@ -59,27 +63,41 @@ function SignInUpMain() {
                 break;
             }
         }
-        axios.get("http://localhost:8000/api/user").then(next => {
-            for(let user of next) {
-                console.log(user)
+        axios.get("http://localhost:8000/api/user/").then(next => {
+            let userJson = {
+                "user_name": signUpForm.userName.value,
+                "password": signUpForm.password.value,
+                "email": signUpForm.email.value,
+                "field": field,
             }
-            if(formValid && !userExistError) {
-                let userJson = {
-                    "user_name": signUpForm.userName.value,
-                    "password": signUpForm.password.value,
-                    "email": signUpForm.email.value,
-                    "field": signUpForm.field.value,
-                    "degree": signUpForm.degree.value
+            for(let user of next.data) {
+                if(user['user_name'] === userJson.user_name) {
+                    userExistError = true;
+                    break;
+                } else {
+                    userExistError = false;
                 }
-
+            }
+            setUserExistError(userExistError);
+            if(formValid && !userExistError) {
                 axios.post('http://localhost:8000/api/user/',userJson).then(next => {
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 3000)
                     window.location.reload();
+                }).catch(error => {
+                    setUserEmailError(true);
                 })
+            } else {
+                setTimeout(() => {
+                    setLoading(false);
+                }, 3000)
             }
         })
     }
     function loginSubmit() {
         let formValid = true;
+        setLoading(true);
         setLoginForm({...loginForm, formClicked: true})
         for (let i = 0; i < loginForm.inputs.length; i++) {
             if(!loginForm[loginForm.inputs[i]].valid) {
@@ -95,11 +113,23 @@ function SignInUpMain() {
             axios.post('http://localhost:8000/login/', userJson).then(next => {
                 if(next.data.error) {
                     setLoginError(true);
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 3000)
                 } else {
-                    localStorage.setItem("USPSPA", next.data['passwordHash']);
-                    window.location.reload();
+                    setTimeout(() => {
+                        localStorage.setItem("USPSPA", next.data['passwordHash']);
+                        window.location.reload();
+                    },4000);
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 3000)
                 }
             })
+        } else {
+            setTimeout(() => {
+                setLoading(false);
+            }, 3000)
         }
     }
 
@@ -111,8 +141,6 @@ function SignInUpMain() {
         })
     }, []);
 
-    const location = useLocation();
-
     useEffect(() => {
         document.body.style.overflow = '';
         document.body.style.paddingRight = '';
@@ -121,6 +149,36 @@ function SignInUpMain() {
 
     return (
         <>
+            <div className={`loading-container position-fixed w-100 h-100 ${loading?'show-loading':''}`}>
+                <svg className="bike" viewBox="0 0 48 30" width="48px" height="30px">
+                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1">
+                        <g transform="translate(9.5,19)">
+                            <circle className="bike__tire" r="9" strokeDasharray="56.549 56.549" />
+                            <g className="bike__spokes-spin" strokeDasharray="31.416 31.416" strokeDashoffset="-23.562">
+                                <circle className="bike__spokes" r="5" />
+                                <circle className="bike__spokes" r="5" transform="rotate(180,0,0)" />
+                            </g>
+                        </g>
+                        <g transform="translate(24,19)">
+                            <g className="bike__pedals-spin" strokeDasharray="25.133 25.133" strokeDashoffset="-21.991" transform="rotate(67.5,0,0)">
+                                <circle className="bike__pedals" r="4" />
+                                <circle className="bike__pedals" r="4" transform="rotate(180,0,0)" />
+                            </g>
+                        </g>
+                        <g transform="translate(38.5,19)">
+                            <circle className="bike__tire" r="9" strokeDasharray="56.549 56.549" />
+                            <g className="bike__spokes-spin" strokeDasharray="31.416 31.416" strokeDashoffset="-23.562">
+                                <circle className="bike__spokes" r="5" />
+                                <circle className="bike__spokes" r="5" transform="rotate(180,0,0)" />
+                            </g>
+                        </g>
+                        <polyline className="bike__seat" points="14 3,18 3" strokeDasharray="5 5" />
+                        <polyline className="bike__body" points="16 3,24 19,9.5 19,18 8,34 7,24 19" strokeDasharray="79 79" />
+                        <path className="bike__handlebars" d="m30,2h6s1,0,1,1-1,1-1,1" strokeDasharray="10 10" />
+                        <polyline className="bike__front" points="32.5 2,38.5 19" strokeDasharray="19 19" />
+                    </g>
+                </svg>
+            </div>
             <div className={`navbar sign-in-up-navbar position-fixed w-100 d-flex`}>
                 <div className="navbar-icon-container d-flex">
                     <div className="navbar-icon">
@@ -200,6 +258,12 @@ function SignInUpMain() {
                             signUpSubmit();
                         }} className="sign-in-form flex-grow-1 justify-content-between d-flex flex-column">
                             <div className="form-inputs">
+                                <div className={`invalid-feedback justify-content-center pb-3 ${userExistError?'d-flex':''}`}>
+                                    user name already exists
+                                </div>
+                                <div className={`invalid-feedback justify-content-center pb-3 ${userEmailError?'d-flex':''}`}>
+                                    email already exists
+                                </div>
                                 <div className="form-floating mb-3">
                                     <input onChange={(e ) => {
                                         setSignUpForm({...signUpForm, userName: {
@@ -229,9 +293,9 @@ function SignInUpMain() {
                                         setSignUpForm({...signUpForm, password: {
                                                 value: e.target.value,
                                                 valid: e.target.value !== ''
-                                        }})
-                                    }} value={signUpForm.password.value} className={`form-control text-white ${!signUpForm.password.valid && signUpForm.formClicked?'is-invalid':''}`} id="password-input" placeholder="Password"/>
-                                    <label htmlFor="password-input">Password</label>
+                                            }})
+                                    }} value={signUpForm.password.value}  className={`form-control text-white ${!signUpForm.password.valid && signUpForm.formClicked?'is-invalid':''}`} id="password-input" placeholder="repeat password"/>
+                                    <label htmlFor="repeat-password-input">password</label>
                                     <div className={`invalid-tooltip ${!signUpForm.password.valid && signUpForm.formClicked?'d-flex':''}`}>
                                         this field shouldn't be empty
                                     </div>
@@ -248,27 +312,19 @@ function SignInUpMain() {
                                         repeat password doesn't match
                                     </div>
                                 </div>
-                                <div className="form-floating mb-3">
-                                    <input type="text" onChange={(e ) => {
-                                        setSignUpForm({...signUpForm, field: {
-                                                value: e.target.value,
-                                                valid: e.target.value !== ''
-                                            }})
-                                    }} value={signUpForm.field.value}  className={`form-control text-white ${!signUpForm.field.valid && signUpForm.formClicked?'is-invalid':''}`} id="field-input" placeholder="field"/>
-                                    <label htmlFor="field-input">Field</label>
-                                    <div className={`invalid-tooltip ${!signUpForm.field.valid && signUpForm.formClicked?'d-flex':''}`}>
-                                        this field shouldn't be empty
+                                <div className="form-floating mb-5 pb-5">
+                                    <div className="form-floating mb-3">
+                                        <select onChange={handleSelect} value={field} required className="form-select text-white" id="field-sign-up-input" name="fieldInput">
+                                            <option hidden>Field</option>
+                                            <option value="biology">Biology</option>
+                                            <option value="mathematics">Mathematics</option>
+                                            <option value="chemistry">Chemistry</option>
+                                            <option value="physics">Physics</option>
+                                        </select>
+                                        <label htmlFor="field-input">Field</label>
+                                        {formError && <div className="invalid-feedback">{formError}</div>}
                                     </div>
-                                </div>
-                                <div className="form-floating mb-5">
-                                    <input type="text" onChange={(e ) => {
-                                        setSignUpForm({...signUpForm, degree: {
-                                                value: e.target.value,
-                                                valid: e.target.value !== ''
-                                            }})
-                                    }} value={signUpForm.degree.value} className={`form-control text-white ${!signUpForm.degree.valid && signUpForm.formClicked?'is-invalid':''}`} id="degree-input" placeholder="field"/>
-                                    <label htmlFor="degree-input">degree</label>
-                                    <div className={`invalid-tooltip ${!signUpForm.degree.valid && signUpForm.formClicked?'d-flex':''}`}>
+                                    <div className={`invalid-tooltip ${!signUpForm.password.valid && signUpForm.formClicked?'d-flex':''}`}>
                                         this field shouldn't be empty
                                     </div>
                                 </div>
