@@ -1,0 +1,10 @@
+* {
+    transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+}
+.question-tags {
+    flex-wrap: wrap;
+}
+
+.navbar {
+    top: 0;
+}

@@ -1,0 +1,234 @@
+.question-container {
+    margin-top: 126px;
+}
+
+.questions-main .navbar{
+    top: 0;
+}
+
+.all-questions {
+    background-color: #00000082 !important;
+}
+
+.question-item {
+    opacity: 0;
+    transform: translateY(11px);
+    background: #ffffff2e;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.category-container.in-view .question-item {
+    opacity: 100%;
+    transform: translateY(0px);
+}
+.question-title {
+    padding: 1rem;
+}
+.category-container{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: #00000082 !important;
+    backdrop-filter: blur(7px);
+}
+
+.sender-pic-placeholder i{
+    color: white;
+    font-size: 40px;
+    border: solid white;
+    border-radius: 50px;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-container.in-view .category-title {
+    opacity: 100%;
+    transform: translateY(0);
+}
+
+.all {
+    background-color: transparent !important;
+}
+
+.questions-main .background-gif{
+    filter: blur(0px) !important;
+}
+
+.question-page-main textarea {
+    min-height: 229px;
+}
+
+.question-page-main .form-control{
+    background: transparent;
+    color: white;
+}
+.question-page-main label {
+    color: white;
+}
+
+.question-container .question-item {
+    width: calc(33.33333333% - 1rem);
+}
+
+
+.bike {
+    display: block;
+    margin: auto;
+    width: 16em;
+    height: auto;
+    color: white;
+    --trans-dur: 0.3s;
+    font-size: calc(16px + (32 - 16) * (100vw - 320px) / (2560 - 320));
+}
+.bike__body,
+.bike__front,
+.bike__handlebars,
+.bike__pedals,
+.bike__pedals-spin,
+.bike__seat,
+.bike__spokes,
+.bike__spokes-spin,
+.bike__tire {
+    animation: bikeBody 3s ease-in-out infinite;
+    stroke: red;
+    transition: stroke var(--trans-dur);
+}
+.bike__front {
+    animation-name: bikeFront;
+}
+.bike__handlebars {
+    animation-name: bikeHandlebars;
+}
+.bike__pedals {
+    animation-name: bikePedals;
+}
+.bike__pedals-spin {
+    animation-name: bikePedalsSpin;
+}
+.bike__seat {
+    animation-name: bikeSeat;
+}
+.bike__spokes,
+.bike__tire {
+    stroke: currentColor;
+}
+.bike__spokes {
+    animation-name: bikeSpokes;
+}
+.bike__spokes-spin {
+    animation-name: bikeSpokesSpin;
+}
+.bike__tire {
+    animation-name: bikeTire;
+}
+
+@keyframes bikeBody {
+    from { stroke-dashoffset: 79; }
+    33%,
+    67% { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -79; }
+}
+@keyframes bikeFront {
+    from { stroke-dashoffset: 19; }
+    33%,
+    67% { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -19; }
+}
+@keyframes bikeHandlebars {
+    from { stroke-dashoffset: 10; }
+    33%,
+    67% { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -10; }
+}
+@keyframes bikePedals {
+    from {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: -25.133;
+    }
+    33%,
+    67% {
+        animation-timing-function: ease-out;
+        stroke-dashoffset: -21.991;
+    }
+    to {
+        stroke-dashoffset: -25.133;
+    }
+}
+@keyframes bikePedalsSpin {
+    from { transform: rotate(0.1875turn); }
+    to { transform: rotate(3.1875turn); }
+}
+@keyframes bikeSeat {
+    from { stroke-dashoffset: 5; }
+    33%,
+    67% { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -5; }
+}
+@keyframes bikeSpokes {
+    from {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: -31.416;
+    }
+    33%,
+    67% {
+        animation-timing-function: ease-out;
+        stroke-dashoffset: -23.562;
+    }
+    to {
+        stroke-dashoffset: -31.416;
+    }
+}
+@keyframes bikeSpokesSpin {
+    from { transform: rotate(0); }
+    to { transform: rotate(3turn); }
+}
+@keyframes bikeTire {
+    from {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: 56.549;
+        transform: rotate(0);
+    }
+    33% {
+        stroke-dashoffset: 0;
+        transform: rotate(0.33turn);
+    }
+    67% {
+        animation-timing-function: ease-out;
+        stroke-dashoffset: 0;
+        transform: rotate(0.67turn);
+    }
+    to {
+        stroke-dashoffset: -56.549;
+        transform: rotate(1turn);
+    }
+}
+.loading-container {
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(34px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 360ms ease-in-out, visibility 100ms 360ms ease-in-out;
+}
+
+.show-loading{
+    visibility: visible;
+    opacity: 100%;
+}
+
+.login-warning {
+    min-width: calc(100% - 2rem);
+    border-radius: 50px;
+}
+
+.get-more button {
+    margin-right: 10px;
+    margin-left: 10px;
+    width: calc(100% - 20px);
+}

@@ -1,0 +1,51 @@
+.nav-link {
+    color: white !important;
+    cursor: pointer;
+}
+
+.sign-in-up-container .nav-link {
+    border-radius: 4px;
+    transition: color 360ms ease-in-out, background-color 360ms ease-in-out;
+}
+
+.sign-in-up-main {
+    margin-top: 100px;
+}
+
+.sign-in-up-container .nav-link:hover {
+    background-color: #00000059;
+}
+
+.sign-in-up-container .nav-link.active {
+    color: #4cff0f ;
+    background-color: #00000059;
+}
+
+.sign-in-up-main .background-gif {
+    filter: blur(0px) !important;
+}
+
+.sign-in-up-container {
+    min-height: 30rem;
+    min-width: 30rem;
+    backdrop-filter: blur(45px);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.sign-in-up-container input {
+    background-color: transparent !important;
+}
+
+.sign-in-up-container label {
+    color: white;
+}
+
+.sign-in-up-navbar {
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    backdrop-filter: blur(45px);
+    height: 100px !important;
+    top: 0;
+    background-color: transparent !important;
+}

@@ -1,0 +1,7 @@
+.about-us-main {
+    background-color: #00000082;
+}
+.about-us-main .description {
+    word-break: break-word;
+    transform: translateX(40px);
+}

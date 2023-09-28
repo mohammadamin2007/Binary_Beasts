@@ -1,0 +1,67 @@
+.nav-link {
+    color: white !important;
+    cursor: pointer;
+}
+
+.add-yours-container .nav-link {
+    border-radius: 4px;
+    transition: color 360ms ease-in-out, background-color 360ms ease-in-out;
+}
+
+.add-yours-main {
+    margin-top: 140px;
+}
+
+.add-yours-container .nav-link:hover {
+    background-color: #00000059;
+}
+
+.add-yours-container .nav-link.active {
+    color: #4cff0f ;
+    background-color: #00000059;
+}
+
+.add-yours-main .background-gif {
+    filter: blur(0px) !important;
+}
+.add-yours-container .form-control {
+    color: white;
+}
+.add-yours-container {
+    min-height: 30rem;
+    min-width: 30rem;
+    backdrop-filter: blur(45px);
+    padding: 2rem;
+    border-radius: 4px;
+    background-color: #ffffff12;
+}
+
+.add-yours-container input {
+    background-color: transparent !important;
+}
+
+.add-yours-container label {
+    color: white;
+}
+
+.add-yours-navbar {
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    backdrop-filter: blur(45px);
+    height: 100px !important;
+    top: 0;
+    background-color: #ffffff26 !important;
+}
+
+.warning-text {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 16px;
+}
+.form-select {
+    background-color: transparent !important;
+}
+
+.form-select option {
+    background: #000000ab;
+}

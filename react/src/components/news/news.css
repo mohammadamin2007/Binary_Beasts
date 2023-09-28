@@ -1,0 +1,115 @@
+.news-section {
+    background-color: #00000082;
+    margin-bottom: 11rem;
+    padding-bottom: 4rem;
+}
+
+.title-icon{
+    & img {
+        width: 12rem;
+        margin-top: -3rem;
+        margin-left: 3rem;
+    }
+}
+.title-icon.in-view {
+    & img{
+        animation:  shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    }
+}
+
+.news-image {
+    & img {
+        width: 25rem;
+        border-radius: 100%;
+        height: 25rem;
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+}
+
+.news-item.in-view .news-image {
+    & img {
+        transform: rotateY(0deg);
+        opacity: 100%;
+    }
+}
+
+.news-item {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+.title-text {
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    font-size: 3rem;
+    margin-left: 2rem;
+    margin-top: -1rem;
+}
+
+.title-text.in-view {
+    transform: translateY(-1rem);
+    opacity: 100%;
+}
+
+.news-section-content {
+    margin-right: 3rem;
+    margin-left: 3rem;
+}
+
+.news-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 41rem;
+    font-size: 32px;
+    color: white;
+    opacity: 0;
+    transform: translateX(-30px);
+    margin-left:1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.news-item.in-view .news-text{
+    opacity: 100%;
+    transform: translateX(0);
+}
+
+.news-item.in-view .link-container {
+    opacity: 100%;
+    transform: translateX(0);
+}
+.news-link {
+    color: #06ff00 !important;
+}
+
+.link:hover{
+    color: #06ff00;
+}
+
+@keyframes shake {
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate(-22px, 11px) rotate(-18deg);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translate(22px, 11px) rotate(18deg);
+    }
+
+    100% {
+        transform: rotate(0) translate(0, 0);
+    }
+}
+.news-section-content .link-news-container{
+    font-size: 32px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-53px);
+}
+.news-item.in-view .link-news-container {
+    opacity: 100%;
+    transform: translateX(0);
+}

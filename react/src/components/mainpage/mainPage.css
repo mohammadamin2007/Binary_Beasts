@@ -1,0 +1,16 @@
+.background-gif{
+    z-index: -1;
+    overflow: hidden;
+    filter: blur(7px);
+}
+
+.background-gif video{
+    pointer-events: none;
+    object-fit: fill;
+    height: 100vh;
+    width: 100vw;
+}
+
+.main-page-container .loading-container {
+    background: black;
+}

@@ -1,0 +1,9 @@
+.header-main video {
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.header-main{
+    z-index: -1;
+}

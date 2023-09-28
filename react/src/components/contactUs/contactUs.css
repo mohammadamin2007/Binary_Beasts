@@ -1,0 +1,62 @@
+.contact-us-title {
+    margin-left: 3rem;
+    margin-top: -3rem;
+    font-size: 35px;
+    padding-bottom: 4rem;
+}
+.background-img {
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.contact-main-title {
+    margin-top: -32px;
+    transform: translateX(-40px);
+    opacity: 0;
+}
+
+.contact-main-title.in-view {
+    transform: translateX(0);
+    opacity: 100%;
+}
+.contact-main-description {
+    transform: translateX(-40px);
+    opacity: 0;
+}
+
+.contact-main-description.in-view {
+    transform: translateX(0);
+    opacity: 100%;
+}
+
+.social-container .nav-item .nav-link i{
+    font-size: 171px;
+}
+
+.social-container {
+    column-gap: 2rem;
+    row-gap: 2rem;
+    padding-bottom: 11rem;
+
+}
+
+.social-container .nav-item {
+    transform: rotateY(90deg);
+    opacity: 0;
+}
+.social-container.in-view .nav-item{
+    transform: rotateY(0);
+    opacity: 100%;
+}
+
+.nav-link.nav-link-contact{
+    padding: 1.5rem 2rem;
+    border: solid white;
+    border-radius: 100%;
+    transition: color 360ms ease-in-out, border-color 160ms ease-in-out;
+
+}
+.nav-link.nav-link-contact:hover{
+    border-color: #06ff00;
+}

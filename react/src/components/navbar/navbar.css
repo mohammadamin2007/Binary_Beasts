@@ -1,0 +1,117 @@
+.navbar {
+    transition: height 240ms ease-in-out;
+    background-color: #00000082 !important;
+    height: 0;
+    padding: 0 !important;
+    z-index: 12;
+    backdrop-filter: blur(7px);
+}
+.navbar.scrolled {
+    height: 126px !important;
+}
+.search-container {
+    flex-grow: 1;
+}
+
+.nav-link.active{
+    color: #4cff0f !important;
+}
+.search-wrapper{
+    margin-right: 35px;
+    margin-left: 35px;
+}
+.navbar-open-icon-container {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    margin-top: -20px;
+    color: white;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: color 360ms ease-in-out !important;
+}
+
+.navbar-open-icon-container:hover {
+    color: #87ff06 !important;
+}
+
+.navbar-icon-img{
+    width: 4rem;
+}
+
+.navbar-icon-description {
+    margin-left: 0.5rem;
+}
+
+.small-description {
+    font-size: 0.45rem;
+    color: white;
+}
+.description-title {
+    color: white;
+}
+.search-wrapper input {
+    padding-left: 35px;
+}
+.nav-link:not(.for-mobile) {
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    transition: color 360ms ease-in-out;
+}
+
+.fa.fa-search {
+    left: 10px;
+    top: 10px;
+}
+.mobile-nav {
+    background-color: #00000082;
+    backdrop-filter: blur(7px);
+    z-index: 100000000;
+}
+
+.nav-link.for-mobile {
+    transition: color 360ms ease-in-out;
+    font-size: 20px;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    color: white;
+}
+.mobile-nav {
+    transition: opacity 0.3s ease-in-out !important;
+}
+.mobile-nav .nav-item {
+    transition: background-color 160ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0);
+}
+.mobile-nav .nav-item:hover {
+    background-color: #ffffff36;
+}
+
+.close-button {
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    font-size: 38px;
+    color: white;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: color 360ms ease-in-out !important;
+}
+
+.close-button .fa{
+    transition: color 360ms ease-in-out !important;
+    color: white;
+}
+.nav-link:hover , .nav-link:hover .fa{
+    color: #4cff0f !important;
+}
+
+.opacity-100 {
+    opacity: 100%;
+}
+
+.opacity-0 {
+    opacity: 0;
+}

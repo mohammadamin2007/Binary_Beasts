@@ -1,0 +1,37 @@
+.question-page-container {
+    background-color: #000000c4;
+}
+
+.question-page-main {
+    margin-top: 140px;
+}
+
+.question-page-main .navbar {
+    top: 0;
+}
+
+.question-page-navbar {
+    height: 100px;
+}
+
+.question-page-container .question-item{
+    cursor: default !important;
+    opacity: 100%;
+    transform: translateY(0);
+}
+
+.question-title, .question-description-text {
+    padding: 0 0 1rem;
+}
+
+.question-description {
+    padding: 10px;
+}
+
+.attached-files .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+.circle {
+    border-radius: 50px;
+}

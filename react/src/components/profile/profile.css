@@ -1,0 +1,49 @@
+.profile-main .background-gif{
+    filter: blur(0);
+}
+
+.profile-navbar {
+    top: 0;
+    height: 100px;
+}
+
+.profile-main-section {
+    margin-top: 140px;
+}
+
+.profile-main-container {
+    padding: 2rem;
+    backdrop-filter: blur(7px);
+    border-radius: 4px;
+}
+
+.asked-questions .question-item, .answered-questions .question-item{
+    opacity: 100%;
+    transform: translateY(0);
+}
+
+.profile-image {
+    font-size: 85px;
+    color: white;
+    border: white solid;
+    padding: 1rem;
+    border-radius: 100px;
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.profile-main-section .form-control {
+    background: transparent;
+}
+.profile-main-section label {
+    color: white;
+}
+
+.hover-to-show {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
